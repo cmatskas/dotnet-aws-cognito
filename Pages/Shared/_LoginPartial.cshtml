@@ -1,0 +1,17 @@
+﻿<ul class="navbar-nav">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <span class="navbar-text text-dark">Hello @User.Identity?.Name!</span>
+        <form method="post">
+            <li class="nav-item">
+                <button class="btn btn-link nav-link text-dark" asp-page="/Index" asp-page-handler="Logout">Sign out</button>
+            </li>
+        </form>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
+        </li>
+    }
+</ul>
