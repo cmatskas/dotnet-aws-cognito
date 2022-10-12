@@ -25,6 +25,11 @@ public class IndexModel : PageModel
 
     public void OnPost()
     {
+        //get access token from authenticated user
+        if(HttpContext.User?.Identity?.IsAuthenticated ?? false)
+        {
+            var accessToken = HttpContext.GetTokenAsync("access_token").Result;
+        }
         HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
     }
